@@ -138,6 +138,7 @@ fi
 # Run grunt
 if [ -e "$DEPLOYMENT_TARGET/Gruntfile.js" ]; then
   cd "$DEPLOYMENT_TARGET"
+  echo 'Grunt prod execution'
   node_modules/.bin/grunt prod
   exitWithMessageOnError "grunt prod task failed"
   cd - > /dev/null
