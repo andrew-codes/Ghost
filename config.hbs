@@ -60,14 +60,11 @@ config = {
             }
         },
         database: {
-            client: 'mysql',
+            client: 'sqlite3',
             connection: {
-                host     : '{{db.host}}',
-                user     : '{{db.username}}',
-                password : '{{db.password}}',
-                database : 'ghost',
-                charset  : 'utf8'
-            }
+                filename: path.join(__dirname, '/content/data/ghost-prod.db')
+            },
+            debug: false
         },
         server: {
             // Host to be passed to node's `net.Server#listen()`
