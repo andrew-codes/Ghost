@@ -110,24 +110,24 @@ echo Handling node.js deployment.
 selectNodeVersion
 
 # Install npm packages
-if [ -e "$DEPLOYMENT_TARGET/package.json" ]; then
-  cd "$DEPLOYMENT_TARGET"
+if [ -e "$DEPLOYMENT_SOURCE/package.json" ]; then
+  cd "$DEPLOYMENT_SOURCE"
   eval $NPM_CMD install
   exitWithMessageOnError "npm failed"
   cd - > /dev/null
 fi
 
 # Run bower install
-if [ -e "$DEPLOYMENT_TARGET/gulpfile.js" ]; then
-  cd "$DEPLOYMENT_TARGET"
+if [ -e "$DEPLOYMENT_SOURCE/gulpfile.js" ]; then
+  cd "$DEPLOYMENT_SOURCE"
   node_modules/.bin/bower install
   exitWithMessageOnError "bower install failed"
   cd - > /dev/null
 fi
 
 # Run gulp
-if [ -e "$DEPLOYMENT_TARGET/gulpfile.js" ]; then
-  cd "$DEPLOYMENT_TARGET"
+if [ -e "$DEPLOYMENT_SOURCE/gulpfile.js" ]; then
+  cd "$DEPLOYMENT_SOURCE"
   node_modules/.bin/gulp --config.site.url="$SITE_ADDRESS" --config.mail.service="$MAIL_SERVICE" --config.mail.username="$MAIL_USERNAME" --config.mail.password="$MAIL_PASSWORD"--config.db.host="$DB_HOST" --config.db.username="$DB_USERNAME" --config.db.password="$DB_PASSWORD"
   exitWithMessageOnError "gulp default task failed"
   cd - > /dev/null
@@ -136,8 +136,8 @@ fi
 
 
 # Run grunt
-if [ -e "$DEPLOYMENT_TARGET/Gruntfile.js" ]; then
-  cd "$DEPLOYMENT_TARGET"
+if [ -e "$DEPLOYMENT_SOURCE/Gruntfile.js" ]; then
+  cd "$DEPLOYMENT_SOURCE"
   echo 'Grunt prod execution'
   node_modules/.bin/grunt prod
   exitWithMessageOnError "grunt prod task failed"
