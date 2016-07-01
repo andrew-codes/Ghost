@@ -4,3 +4,7 @@
 [submodule "core/client"]
 	path = core/client
 	url = https://github.com/TryGhost/Ghost-Admin.git
+[submodule "content/themes/journal"]
+	path = content/themes/journal
+	url = ./../andrew.codes-ghost-theme
+	branch = master
